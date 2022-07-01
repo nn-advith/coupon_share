@@ -1,9 +1,15 @@
 import React, {useState} from 'react';
-import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { userExists, registerUser } from '../../redux/slice/userSlice';
 
 import { Button } from '../Reusable/Reusable';
 
 const Register = () => {
+
+    const userE = useSelector(userExists)
+    const dispatch= useDispatch();
+    let navigate = useNavigate();
 
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
@@ -12,21 +18,20 @@ const Register = () => {
     const [checkPassword, setCheckPassword] = useState('')
 
     const handleSubmit = () => {
-        console.log(name, username, email, password, checkPassword);
-
         if(password === checkPassword){
-            var user = {
+            var nuser = {
               'name': name,
               'username': username,
               'email': email,
               'password': password
             }
 
-            axios({
-              method: 'post',
-              url: '/register',
-              data: user
-            }).then((res) => console.log(res));
+            dispatch(registerUser(nuser)).then((e) =>  {
+              if(!e.payload.error)
+              {
+                navigate("/dashboard")
+              }
+            });    
         }else{
           console.log('Passwords dont match')
         }
@@ -35,12 +40,16 @@ const Register = () => {
   return (
     <>
         <div>Register</div>
+
         <input type="text" name="name" id="name" placeholder='Name' onChange={(e) => setName(e.target.value)}/>
         <input type="text" name="username" id="username" placeholder='Username' onChange={(e) => setUsername(e.target.value)}/>
         <input type="email" name="email" id="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
         <input type="password" name="password" id="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)}/>
         <input type="password" name="checkpassword" id="checkpassword" placeholder='Confirm Password' onChange={(e) => setCheckPassword(e.target.value)}/>
         <Button onClick={handleSubmit}>Register</Button>
+
+        <br/>
+        {userE ? <div>username exists</div> : null}
     </>
 
   )
