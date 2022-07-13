@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as api from '../../api/api.js'
 
 const initialState = {
-    loggedUser : {},
+    loggedUser : null,
     userExists: false,
     loginError: 0
 }
@@ -12,6 +12,7 @@ export const registerUser = createAsyncThunk(
     async(newuser) => {
         try{
             const { data } = await api.registerUser(newuser);
+            console.log(data);
             return data
         }catch(err){
             console.log(err)
@@ -24,6 +25,7 @@ export const loginUser = createAsyncThunk(
     async(user) => {
         try{
             const { data } = await api.loginUser(user);
+            console.log(data);
             return data
         }catch(err){
             console.log(err)

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {colors} from '../../config/colors.js'
 
 export const Button = styled.div`
-    width: 120px; 
+    width: 200px; 
     height: 40px;
     background-color: ${colors.secondary};
     color: ${colors.accent};
