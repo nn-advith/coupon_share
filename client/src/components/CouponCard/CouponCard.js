@@ -32,6 +32,8 @@ const CouponCard = ({ coupon}) => {
   return (
     <>
         <h5>{coupon.couponName}</h5>
+        <h5>{coupon.couponDesc}</h5>
+        <h5>{coupon.couponExpiry}</h5>
         {coupon.id === user.id ?<p>Your public coupon</p> : null}
         <Button onClick={ (coupon.id === user.id ) ? null : handleClaim}>Claim</Button>
         <hr/>

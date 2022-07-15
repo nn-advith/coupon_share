@@ -83,7 +83,9 @@ router.post('/shareCoupon', (req, res) => {
     var newCoupon = new pCModel({
         id: coupon.id,
         couponName: coupon.couponName,
-        couponVal: coupon.couponVal
+        couponVal: coupon.couponVal,
+        couponDesc: coupon.couponDesc,
+        couponExpiry: coupon.couponExpiry
     });
 
     newCoupon.save(function(err, result) {
