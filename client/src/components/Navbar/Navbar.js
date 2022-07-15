@@ -18,14 +18,20 @@ const NavWrap = styled.div`
     width: 70%;
     display: flex;
     align-items: center;
-    justify-content: left
+    justify-content: space-between;
 
+`
+
+const Sub = styled.div`
+    font-size: 0.5rem;
+    color: #aaa;
+    letter-spacing: -0.2px;
 `
 
 const NavTitle = styled.div`
     font-size: 2rem;
     font-weight: 900;
-    color: ${colors.accent}
+    color: ${colors.accent2}
 `
 
 
@@ -35,8 +41,9 @@ const Navbar = () => {
         <NavbarWrapper>
         <NavWrap>
             <NavTitle>
-                Coupon Share
+                CouponShare
             </NavTitle>
+            <Sub>MERN Project - N N Advith, P Saketh Reddy  |  2022</Sub>
         </NavWrap>
         </NavbarWrapper>
     </>

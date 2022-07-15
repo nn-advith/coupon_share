@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { loggedUser } from '../../redux/slice/userSlice';
 import Profile from '../Profile/Profile';
+import { BodyContainer } from '../Reusable/Reusable';
 
 
 const Dashboard = () => {
@@ -10,15 +11,15 @@ const Dashboard = () => {
   const user = useSelector(loggedUser)
   return (
     <>
-    <p>
-      {user._id}
-    </p>
+    <BodyContainer>
+
     <React.Fragment>
          <Profile />    
       <hr/>
       <Outlet/>
     </React.Fragment>
     
+    </BodyContainer>
 
     </>
   )

@@ -53,6 +53,9 @@ export const userSlice = createSlice({
         setLoginError: (state, id) => {
             state.loginError = id;
         },
+        setUserExists: (state, e) => {
+            state.userExists = e;
+        }
         
     },
     extraReducers: (builder) => {
@@ -82,7 +85,7 @@ export const userSlice = createSlice({
     }
 })
 
-export const { setLoggedUser, setLoginError } = userSlice.actions;
+export const { setLoggedUser, setLoginError, setUserExists } = userSlice.actions;
 
 export const loggedUser =(state) => state.user.loggedUser;
 export const userExists =(state) => state.user.userExists;

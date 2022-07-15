@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {  coupons, getPublicCoupons, claimed } from '../../redux/slice/couponSlice';
 import {Link} from 'react-router-dom';
-import { Button } from '../Reusable/Reusable';
+import {BiArrowBack} from 'react-icons/bi'
+import { BodyContainer, Button, Subhead, NavButton } from '../Reusable/Reusable';
 import CouponCard from '../CouponCard/CouponCard';
 import PaginationBar from '../PaginationBar/PaginationBar';
+import {BarLoader} from 'react-spinners';
 
 const ViewCoupon = () => {
 
@@ -31,20 +33,23 @@ const ViewCoupon = () => {
   }
 
   return (
-    <div>
-    <br/>
-    <div>ViewCoupon</div>
+    <>
+    <BodyContainer>
     <Link to="/dashboard" >
-        <Button>Back</Button>
+        <NavButton><BiArrowBack/></NavButton>
       </Link>
-    <div>{pc.length > 0? pc.slice(indexOfFirst, indexOfLast).map((i, key) => (
-      <CouponCard key={key} coupon={i} />
-    ))
-    :
-    <p>Loading</p>
-    }</div>
-    <PaginationBar perPage={perPage} total={pc.length} paginate={paginate}/>
-    </div>
+      <Subhead>Public Coupons</Subhead>
+      
+      {pc.length > 0? pc.slice(indexOfFirst, indexOfLast).map((i, key) => (
+        <CouponCard key={key} coupon={i} />
+      ))
+      :
+      <BarLoader/>
+      }
+      <PaginationBar perPage={perPage} total={pc.length} currentPage={currentPage} paginate={paginate}/>
+    
+    </BodyContainer>
+    </>
   )
 }
 

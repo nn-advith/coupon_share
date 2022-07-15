@@ -1,9 +1,33 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../Reusable/Reusable';
+import { BodyContainer, Button, Subhead, NavButton } from '../Reusable/Reusable';
+import {BiArrowBack} from 'react-icons/bi'
 import { useSelector } from 'react-redux';
 import { loggedUser } from '../../redux/slice/userSlice';
 import { myPC } from '../../api/api';
+import styled from 'styled-components';
+import { colors } from '../../config/colors';
+
+
+const CardContainer = styled.div`
+  width: 300px;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 20px 0;
+`
+
+const Code = styled.div`
+  background: #9addfb;
+  color: ${colors.secondary};
+  padding: 5px 10px ;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-top: 10px;
+
+`
 
 const MyPC = () => {
 
@@ -21,18 +45,20 @@ const MyPC = () => {
 
   return (
     <>
-    <div>MyPC</div>
+    <BodyContainer>
     <Link to="/dashboard" >
-        <Button>Back</Button>
+        <NavButton><BiArrowBack/></NavButton>
       </Link>
-      <hr/>
+    <Subhead>My Public Coupons</Subhead>
+
       {mycoupons.map((i, key) => (
-        <div key={key}>
+        <CardContainer key={key}>
           <h4>{i.couponName}</h4>
-          <h5>{i.couponVal}</h5>
+          <Code>{i.couponVal}</Code>
           <br/>
-        </div>
+        </CardContainer>
       ))}
+    </BodyContainer>
     </>
   )
 }
